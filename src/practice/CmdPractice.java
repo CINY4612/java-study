@@ -10,13 +10,9 @@ public class CmdPractice {
         CmdPractice cmdPractice = new CmdPractice();
 
         try{
-            String cmd = "type hello.txt";
+            String cmd = "echo %cd%";
             String result = cmdPractice.readCmdResult(cmd);
-            System.out.println(result);
-
-            cmd = "c: && cd c:Users/user && type hello.txt";
-            result = cmdPractice.readCmdResult(cmd);
-            System.out.println(result);
+            System.out.println("echo 명령어로 확인한 내용 : " + result);
         } catch (IOException e){
             System.out.println("ERROR!!!");
             System.out.println(e.getMessage());
