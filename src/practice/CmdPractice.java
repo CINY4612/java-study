@@ -3,17 +3,19 @@ package practice;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CmdPractice {
 
     public static void main(String[] args) {
         CmdPractice cmdPractice = new CmdPractice();
-
-        try{
-            String cmd = "echo %cd%";
+        try {
+            String cmd = "where /r d: hello.txt";
             String result = cmdPractice.readCmdResult(cmd);
-            System.out.println("echo 명령어로 확인한 내용 : " + result);
-        } catch (IOException e){
+            System.out.println(result);
+        } catch (IOException e) {
             System.out.println("ERROR!!!");
             System.out.println(e.getMessage());
         }
@@ -31,16 +33,10 @@ public class CmdPractice {
         // 문자열 추가 자료형
         StringBuffer sb = new StringBuffer();
 
-        try{
-            while((line = reader.readLine()) != null) {
-                sb.append(line);
-                sb.append("\n");
-            }
-        } catch (IOException e){
-            System.out.println("ERROR!!!");
-            System.out.println(e.getMessage());
+        while ((line = reader.readLine()) != null) {
+            sb.append(line);
+            sb.append("\n");
         }
-
         return sb.toString();
     }
 }
