@@ -10,10 +10,12 @@ public class CmdPractice {
         CmdPractice cmdPractice = new CmdPractice();
 
         try{
-            String cmd = "help";
-            Process process = Runtime.getRuntime().exec("cmd /c " + cmd);
+            String cmd = "type hello.txt";
+            String result = cmdPractice.readCmdResult(cmd);
+            System.out.println(result);
 
-            String result = cmdPractice.readCmdResult(process);
+            cmd = "c: && cd c:Users/user && type hello.txt";
+            result = cmdPractice.readCmdResult(cmd);
             System.out.println(result);
         } catch (IOException e){
             System.out.println("ERROR!!!");
@@ -21,7 +23,10 @@ public class CmdPractice {
         }
     }
 
-    public String readCmdResult(Process process) throws IOException {
+    public String readCmdResult(String cmd) throws IOException {
+        System.out.println("<< cmd >> : " + cmd);
+        System.out.println("##########################################");
+        Process process = Runtime.getRuntime().exec("cmd /c " + cmd);
         // cmd 결과값이 담긴 process를 문자 단위로 읽어들임
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(process.getInputStream(), "MS949"));
